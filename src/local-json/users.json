@@ -1,0 +1,14 @@
+[
+    {
+        "id":1,
+        "name":"Satyam Mishra",
+        "username":"satyam",
+        "email":"satyam.mishra@successive.tech"
+    },
+    {
+        "id":2,
+        "name":"Preet Saxena",
+        "username":"preet",
+        "email":"preet.saxena@successive.tech"
+    }
+]
