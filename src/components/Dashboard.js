@@ -20,6 +20,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems } from './listItems';
 import CreatePost from './CreatePost';
 import { Outlet } from 'react-router-dom';
+import Breadcrumbs from './Breadcrumbs';
 
 
 
@@ -148,7 +149,9 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
+          <Breadcrumbs />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+         
             <Grid container spacing={3}>
               {/* Chart */}
               <Grid item xs={12} md={12} lg={12}>

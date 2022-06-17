@@ -9,6 +9,7 @@ import { IconButton } from '@mui/material';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Paper from '@mui/material/Paper';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import { useEffect, useState } from 'react';
 import { NavLink, Outlet, Link } from 'react-router-dom'
 
@@ -41,6 +42,8 @@ function ListPost() {
       localStorage.removeItem("PostList");
     }
   }
+
+  
  
 
   useEffect(() => {
@@ -78,6 +81,17 @@ function ListPost() {
               <TableCell align="right"> {item.postcontent}</TableCell>
 
               <TableCell align="right">
+
+              <Link to ={{
+                pathname:"viewPost",
+                search: `?id=${item.id}`
+              }} style = {{textDecoration:'none'}} >
+                 <IconButton aria-label="view" >
+                  <VisibilityIcon  color="success" />
+                </IconButton>
+              </Link>
+             
+
               <Link to={{
                 pathname: "updatePost",
                 search: `?id=${item.id}`,

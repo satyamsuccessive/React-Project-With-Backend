@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ListPost from './components/ListPost'
 import { useState } from 'react';
 import UpdatePost from './components/UpdatePost';
+import ViewPost from './components/ViewPost';
 
 function App() {
   
@@ -19,6 +20,7 @@ function App() {
             <Route path = "listPost">
               <Route index={true} element={<ListPost/>}></Route>
               <Route path = "updatePost" element={<UpdatePost/>}></Route>
+              <Route path = "viewPost" element={<ViewPost/>}></Route>
             </Route>
           </Route>
         </Routes>
