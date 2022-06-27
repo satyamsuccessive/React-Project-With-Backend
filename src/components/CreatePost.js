@@ -12,93 +12,84 @@ import { ExitToApp } from '@mui/icons-material';
 
 function CreatePost(props) {
 
-  
-  
 
   const personList = []
 
   let navigate = useNavigate();
 
   const postListItems = JSON.parse(localStorage.getItem('PostList'));
-  
+
 
   const [state, setState] = useState(postListItems ?? []);
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
-  const [success, SetSuccess] = useState(false);
+  const [message, setMessage] = useState("");
+
 
   const uniqueId = () => parseInt(Date.now() * Math.random(), 10).toString();
 
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
     const data = new FormData(event.currentTarget);
+    let res = [];
+    let postcontent = data.get('postContentForm');
+    let posttitle = data.get('postTitleForm')
 
-    let postContentForm = data.get('postContentForm');
-    let postTitleForm = data.get('postTitleForm')
-
-    // console.log({
-    //   "postname":postTitleForm,
-    //   "postcontent":postContentForm
-    // })
-
-    setState(prevState=> [
-      ...prevState, 
-      {
-        "id" : uniqueId(),
-        "postname": postTitleForm,
-        "postcontent": postContentForm
+    try {
+      res = await axios.post('http://localhost:3002/api/post', {
+        posttitle: posttitle,
+        postcontent: postcontent
+      })
+      if (res.status === 200) {
+        setMessage("Post created successfully");
+        console.log(res)
       }
-    ])
-
-    if (postContentForm === '' || postTitleForm === '') {
-      setError(true)
-      SetSuccess(false)
+      else {
+        setMessage("Some error occured");
+      }
     }
-    else{
-      setError(false);
-      SetSuccess(true)
+    catch (err) {
+      console.log(err)
     }
 
   };
 
-  console.log(state)
-
-  localStorage.setItem("PostList",JSON.stringify(state))
 
 
-  // Showing error message if error is true
-  const errorMessage = () => {
+  // console.log({
+  //   "postname":postTitleForm,
+  //   "postcontent":postContentForm
+  // })
 
-    return (
-      <div
-        className="error"
-        style={{
-          display: error ? '' : 'none',
-        }}>
-        <p>Please input the data!!</p>
-      </div>
-    );
-  };
+  //   setState(prevState=> [
+  //     ...prevState, 
+  //     {
+  //       "id" : uniqueId(),
+  //       "postname": postTitleForm,
+  //       "postcontent": postContentForm
+  //     }
+  //   ])
 
-  const successMessage = () => {
-    return (
-      <div className='success' style={{
-        display: success ? '' : 'none',
-      }}>
-        <p>Your Post Has been Successfully Created!!</p>
-      </div>
-    );
-  };
+  //   if (postContentForm === '' || postTitleForm === '') {
+  //     setError(true)
+  //     SetSuccess(false)
+  //   }
+  //   else{
+  //     setError(false);
+  //     SetSuccess(true)
+  //   }
+
+  // };
+
+  // console.log(state)
+
+  // localStorage.setItem("PostList",JSON.stringify(state))
+
 
   return (
     <div>
 
-      <div className="messages">
-        {errorMessage()}
-        {successMessage()}
-      </div>
+    <div className="message">{message ? <p>{message}</p> : null}</div>
+
 
       <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
 

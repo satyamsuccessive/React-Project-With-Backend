@@ -11,16 +11,15 @@ const Breadcrumbs = () => {
   const { pathname } = useLocation();
 
   const pathnames = pathname.split("/").filter(Boolean);
-  console.log(pathnames.length)
+  console.log("pathlength" +pathnames.length)
   
 
   return (
     <MUIBreadcrumbs aria-label="breadcrumb">
    
-    
-  
     {pathnames.map((name, index) => {
       const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`;
+      console.log(routeTo)
       const isLast = index === pathnames.length - 1;
       return isLast ? (
         <Typography key={name}>{name}</Typography>

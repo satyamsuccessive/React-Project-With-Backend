@@ -4,8 +4,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -29,7 +27,6 @@ export default function SignInSide() {
 
   // States for checking the errors
   let navigate = useNavigate();
-  const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
 
@@ -40,13 +37,18 @@ export default function SignInSide() {
       let email = data.get('email');
       let password = data.get('password')
 
+      console.log({
+        email:email,
+        password:password
+      })
+
       if (email === '' || password === '') {
         setError(true);
       } 
      
       axios.get('./data.json')
      .then((res)=>{
-      if(res.data[0].email==email && res.data[0].password==password)
+      if(res.data[0].email===email && res.data[0].password===password)
       {
         setError(false); 
         navigate("home") 

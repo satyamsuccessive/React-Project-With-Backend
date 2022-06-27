@@ -3,7 +3,6 @@ import Dashboard from './components/Dashboard'
 import CreatePost from './components/CreatePost'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ListPost from './components/ListPost'
-import { useState } from 'react';
 import UpdatePost from './components/UpdatePost';
 import ViewPost from './components/ViewPost';
 
