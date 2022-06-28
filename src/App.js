@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ListPost from './components/ListPost'
 import UpdatePost from './components/UpdatePost';
 import ViewPost from './components/ViewPost';
+import SignUp from './components/SignUp';
 
 function App() {
   
@@ -13,7 +14,10 @@ function App() {
     <div className="App">
        <BrowserRouter>
         <Routes>
-          <Route index element={<SignInSide></SignInSide>} />
+          <Route index element={<SignInSide></SignInSide>} >
+           
+            </Route>
+           <Route path = "signup" element={<SignUp />}> </Route>
           <Route path = "home" element={<Dashboard></Dashboard>}>
             <Route path = "createPost" element={<CreatePost/>}> </Route>
             <Route path = "listPost">

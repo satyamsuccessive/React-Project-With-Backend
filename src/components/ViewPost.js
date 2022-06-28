@@ -56,27 +56,27 @@ function ViewPost() {
         setFormInput({ ...formInput, [key]: value })
     }
 
-
     const handleSubmit = (event) => {
         event.preventDefault();
-
+    
         const data = new FormData(event.currentTarget);
-
+    
         let postContentForm = data.get('postContent');
-        let postTitleForm = data.get('postTitle');
-
+        let postTitleForm = data.get('postTitle')
+    
         var items = JSON.parse(localStorage.getItem("PostList"))
         var item = items.find(item => item.id === postId)
-
+    
         if (item) {
             item.postcontent = postContentForm
             item.postname = postTitleForm
         }
-
+    
         localStorage.setItem('PostList', JSON.stringify(items))
-
+    
         console.log(items)
     };
+
 
     return (
         <div>

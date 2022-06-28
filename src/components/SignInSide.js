@@ -12,8 +12,7 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios'
 import { useState } from 'react';
-;
-
+import { Link } from 'react-router-dom';
 
 
 const theme = createTheme();
@@ -28,6 +27,13 @@ export default function SignInSide() {
   // States for checking the errors
   let navigate = useNavigate();
   const [error, setError] = useState(false);
+
+
+
+  const goToSignUp  = (event) =>{
+    event.preventDefault();
+    navigate("signup");
+  }
 
 
   const handleSubmit = (event) => {
@@ -155,6 +161,19 @@ const errorMessage = () => {
               >
                 Sign In
               </Button>
+
+
+              <Grid container>
+                
+                <Grid item>
+                <Button
+                sx={{ mt: 3, mb: 2 }}
+                onClick = {goToSignUp}
+              >
+                Don't have an account? Sign Up
+                </Button>
+                </Grid>
+              </Grid>
             
              
             </Box>
